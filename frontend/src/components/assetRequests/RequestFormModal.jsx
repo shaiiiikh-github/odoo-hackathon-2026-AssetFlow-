@@ -12,6 +12,7 @@ import {
   Printer,
   Sparkles,
   PackageSearch,
+  Headphones,
 } from "lucide-react";
 import { requestCategories, requestPriorities } from "../../services/assetRequestService";
 import Button from "../ui/Button";
