@@ -1,7 +1,7 @@
 const toneClasses = {
-  success: "bg-emerald-50 text-[#22C55E] ring-emerald-100",
-  warning: "bg-amber-50 text-[#F59E0B] ring-amber-100",
-  danger: "bg-rose-50 text-[#EF4444] ring-rose-100",
+  success: "bg-emerald-50 text-[#15803D] ring-emerald-100",
+  warning: "bg-amber-50 text-[#B45309] ring-amber-100",
+  danger: "bg-rose-50 text-[#B91C1C] ring-rose-100",
   info: "bg-blue-50 text-[#2563EB] ring-blue-100",
   neutral: "bg-slate-50 text-slate-600 ring-slate-200",
 };

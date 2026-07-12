@@ -2,7 +2,8 @@ import EmployeeAssetCard from "../../components/employee/EmployeeAssetCard";
 import PageHeader from "../../components/dashboard/PageHeader";
 import SectionCard from "../../components/dashboard/SectionCard";
 import DataTable from "../../components/tables/DataTable";
-import { employeeAssets } from "../../constants/employeeData";
+import useAuth from "../../hooks/useAuth";
+import useAssetRequests from "../../hooks/useAssetRequests";
 
 const columns = [
   { key: "id", label: "Asset ID" },
@@ -14,6 +15,10 @@ const columns = [
 ];
 
 export default function MyAssets() {
+  const { user } = useAuth();
+  const requestApi = useAssetRequests();
+  const assignedAssets = requestApi.getEmployeeAssets(user.email);
+
   return (
     <div className="space-y-6">
       <PageHeader
@@ -23,7 +28,7 @@ export default function MyAssets() {
       />
 
       <section className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-        {employeeAssets.map((asset) => (
+        {assignedAssets.map((asset) => (
           <EmployeeAssetCard key={asset.id} asset={asset} />
         ))}
       </section>
@@ -31,7 +36,7 @@ export default function MyAssets() {
       <SectionCard title="Asset Register" description="Assigned asset list">
         <DataTable
           columns={columns}
-          rows={employeeAssets}
+          rows={assignedAssets}
           caption="Assigned employee assets"
           emptyTitle="No assigned assets"
           emptyDescription="Assigned assets will appear here once allocation is complete."

@@ -1,5 +1,6 @@
 import ActivityCard from "../../components/dashboard/ActivityCard";
 import PageHeader from "../../components/dashboard/PageHeader";
+import RequestCard from "../../components/assetRequests/RequestCard";
 import QuickActionCard from "../../components/dashboard/QuickActionCard";
 import SectionCard from "../../components/dashboard/SectionCard";
 import StatsGrid from "../../components/dashboard/StatsGrid";
@@ -11,6 +12,9 @@ import {
   employeesSeed,
 } from "../../constants/adminData";
 import { quickActions } from "../../constants/managerDashboardData";
+import { AlertCircle, ClipboardList, ShieldCheck } from "lucide-react";
+import useAuth from "../../hooks/useAuth";
+import useAssetRequests from "../../hooks/useAssetRequests";
 
 const adminActions = [
   { ...quickActions[0], title: "Departments", description: "Create departments", to: "/admin/departments" },
@@ -19,6 +23,17 @@ const adminActions = [
 ];
 
 export default function AdminDashboard() {
+  const { user, role } = useAuth();
+  const requestApi = useAssetRequests();
+  const summary = requestApi.getAdminRequestSummary();
+  const requestStats = [
+    { label: "Total Requests", value: String(summary.total), change: "Request register", tone: "blue", icon: ClipboardList },
+    { label: "Pending", value: String(summary.pending), change: "Awaiting review", tone: "amber", icon: ClipboardList },
+    { label: "Approved", value: String(summary.approved), change: "Allocated requests", tone: "emerald", icon: ShieldCheck },
+    { label: "Rejected", value: String(summary.rejected), change: "Declined requests", tone: "rose", icon: AlertCircle },
+  ];
+  const recentRequests = requestApi.getVisibleRequests(role, user.email).slice(0, 3);
+
   return (
     <div className="space-y-6">
       <PageHeader
@@ -28,6 +43,7 @@ export default function AdminDashboard() {
       />
 
       <StatsGrid items={adminStats} />
+      <StatsGrid items={requestStats} />
 
       <section className="grid gap-6 xl:grid-cols-[1.2fr_0.8fr]">
         <SectionCard title="Master Data Health" description="Current admin setup">
@@ -58,6 +74,14 @@ export default function AdminDashboard() {
             />
           ))}
         </ol>
+      </SectionCard>
+
+      <SectionCard title="Recent Asset Requests" description="Read-only request register view">
+        <div className="grid gap-4 md:grid-cols-3">
+          {recentRequests.map((request) => (
+            <RequestCard key={request.id} request={request} to="/admin/asset-requests" />
+          ))}
+        </div>
       </SectionCard>
     </div>
   );

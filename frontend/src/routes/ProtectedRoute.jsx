@@ -1,13 +1,16 @@
 import { Navigate } from "react-router-dom";
 import { ROUTE_PATHS } from "./routePaths";
-import { getCurrentRole } from "../utils/authMock";
+import useAuth from "../hooks/useAuth";
 
 export default function ProtectedRoute({ allowedRoles, children }) {
-  const currentRole = getCurrentRole();
-  const canAccessRoute = allowedRoles.includes(currentRole);
+  const { isAuthenticated, role } = useAuth();
 
-  if (!canAccessRoute) {
-    return <Navigate to={ROUTE_PATHS.shared.notFound} replace />;
+  if (!isAuthenticated) {
+    return <Navigate to={ROUTE_PATHS.auth.login} replace />;
+  }
+
+  if (!allowedRoles.includes(role)) {
+    return <Navigate to={ROUTE_PATHS.auth.login} replace />;
   }
 
   return children;

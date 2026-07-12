@@ -3,13 +3,16 @@ import AdminDashboard from "../pages/admin/Dashboard";
 import Categories from "../pages/admin/Categories";
 import Departments from "../pages/admin/Departments";
 import Employees from "../pages/admin/Employees";
+import AdminAssetRequests from "../pages/admin/AssetRequests";
 import ManagerDashboard from "../pages/manager/Dashboard";
 import Assets from "../pages/manager/Assets";
 import Allocation from "../pages/manager/Allocation";
 import Maintenance from "../pages/manager/Maintenance";
 import RegisterAsset from "../pages/manager/RegisterAsset";
 import Reports from "../pages/manager/Reports";
+import ManagerAssetRequests from "../pages/manager/AssetRequests";
 import EmployeeDashboard from "../pages/employee/Dashboard";
+import EmployeeAssetRequests from "../pages/employee/AssetRequests";
 import MaintenanceRequest from "../pages/employee/MaintenanceRequest";
 import MyAssets from "../pages/employee/MyAssets";
 import Notifications from "../pages/employee/Notifications";
@@ -61,6 +64,11 @@ export const appRoutes = [
     allowedRoles: adminOnly,
   },
   {
+    path: ROUTE_PATHS.admin.assetRequests,
+    element: AdminAssetRequests,
+    allowedRoles: adminOnly,
+  },
+  {
     path: ROUTE_PATHS.manager.dashboard,
     element: ManagerDashboard,
     allowedRoles: managerOnly,
@@ -91,6 +99,11 @@ export const appRoutes = [
     allowedRoles: managerOnly,
   },
   {
+    path: ROUTE_PATHS.manager.assetRequests,
+    element: ManagerAssetRequests,
+    allowedRoles: managerOnly,
+  },
+  {
     path: ROUTE_PATHS.employee.dashboard,
     element: EmployeeDashboard,
     allowedRoles: employeeOnly,
@@ -98,6 +111,11 @@ export const appRoutes = [
   {
     path: ROUTE_PATHS.employee.myAssets,
     element: MyAssets,
+    allowedRoles: employeeOnly,
+  },
+  {
+    path: ROUTE_PATHS.employee.assetRequests,
+    element: EmployeeAssetRequests,
     allowedRoles: employeeOnly,
   },
   {

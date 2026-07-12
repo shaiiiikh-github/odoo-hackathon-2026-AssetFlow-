@@ -29,7 +29,7 @@ export default function Modal({ title, description, isOpen, onClose, children })
       <button
         type="button"
         aria-label="Close modal"
-        className="absolute inset-0 bg-slate-950/40 backdrop-blur-[2px]"
+        className="absolute inset-0 bg-slate-950/50 backdrop-blur-sm"
         onClick={onClose}
       />
       <section
@@ -37,11 +37,11 @@ export default function Modal({ title, description, isOpen, onClose, children })
         aria-modal="true"
         aria-labelledby={titleId}
         aria-describedby={description ? descriptionId : undefined}
-        className="relative w-full max-w-xl animate-[modal-in_160ms_ease-out] rounded-2xl border border-[#E2E8F0] bg-white shadow-2xl"
+        className="relative w-full max-w-xl animate-[modal-in_160ms_ease-out] rounded-[1.5rem] border border-white/80 bg-white shadow-[0_30px_80px_rgba(15,23,42,0.24)]"
       >
         <header className="flex items-start justify-between gap-4 border-b border-[#E2E8F0] p-6">
           <div>
-            <h2 id={titleId} className="text-lg font-semibold text-[#1E293B]">
+            <h2 id={titleId} className="text-lg font-semibold tracking-tight text-[#0F172A]">
               {title}
             </h2>
             {description && (
@@ -53,7 +53,7 @@ export default function Modal({ title, description, isOpen, onClose, children })
           <button
             type="button"
             aria-label="Close"
-            className="flex h-9 w-9 items-center justify-center rounded-2xl text-slate-500 hover:bg-slate-50"
+            className="flex h-9 w-9 items-center justify-center rounded-2xl text-slate-500 hover:bg-slate-50 hover:text-[#0F172A]"
             onClick={onClose}
           >
             <X size={18} />
