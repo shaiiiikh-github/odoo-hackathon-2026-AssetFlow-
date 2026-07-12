@@ -1,0 +1,18 @@
+Core Framework
+
+fastapi0.104.1
+uvicorn[standard]0.24.0
+pydantic2.5.2
+pydantic-settings2.1.0
+
+Database
+
+SQLAlchemy2.0.23
+psycopg2-binary2.9.9
+alembic==1.13.0
+
+Security & Authentication
+
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]1.7.4
+python-multipart0.0.6
