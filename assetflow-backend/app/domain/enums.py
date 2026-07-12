@@ -1,17 +1,26 @@
+# (Add these to app/domain/enums.py)
 import enum
 
-class AssetStatus(str, enum.Enum):
-    AVAILABLE = "AVAILABLE"
-    ALLOCATED = "ALLOCATED"
-    RESERVED = "RESERVED"
-    UNDER_MAINTENANCE = "UNDER_MAINTENANCE"
-    LOST = "LOST"
-    RETIRED = "RETIRED"
-    DISPOSED = "DISPOSED"
+class MaintenancePriority(str, enum.Enum):
+    LOW = "LOW"
+    MEDIUM = "MEDIUM"
+    HIGH = "HIGH"
+    CRITICAL = "CRITICAL"
 
-class AssetCondition(str, enum.Enum):
-    NEW = "NEW"
-    GOOD = "GOOD"
-    FAIR = "FAIR"
-    POOR = "POOR"
-    BROKEN = "BROKEN"
+class MaintenanceStatus(str, enum.Enum):
+    PENDING = "PENDING"
+    APPROVED = "APPROVED"
+    IN_PROGRESS = "IN_PROGRESS"
+    RESOLVED = "RESOLVED"
+    REJECTED = "REJECTED"
+
+class AuditCycleStatus(str, enum.Enum):
+    OPEN = "OPEN"
+    IN_PROGRESS = "IN_PROGRESS"
+    CLOSED = "CLOSED"
+
+class AuditItemStatus(str, enum.Enum):
+    PENDING = "PENDING"
+    VERIFIED = "VERIFIED"
+    MISSING = "MISSING"
+    DAMAGED = "DAMAGED"
