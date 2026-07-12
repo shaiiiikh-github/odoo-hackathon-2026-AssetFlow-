@@ -7,6 +7,7 @@ export const ROUTE_PATHS = {
     departments: "/admin/departments",
     categories: "/admin/categories",
     employees: "/admin/employees",
+    assetRequests: "/admin/asset-requests",
   },
   manager: {
     dashboard: "/manager",
@@ -15,10 +16,12 @@ export const ROUTE_PATHS = {
     allocation: "/manager/allocation",
     maintenance: "/manager/maintenance",
     reports: "/manager/reports",
+    assetRequests: "/manager/asset-requests",
   },
   employee: {
     dashboard: "/employee",
     myAssets: "/employee/my-assets",
+    assetRequests: "/employee/asset-requests",
     maintenanceRequest: "/employee/maintenance-request",
     returnRequest: "/employee/return-request",
     notifications: "/employee/notifications",

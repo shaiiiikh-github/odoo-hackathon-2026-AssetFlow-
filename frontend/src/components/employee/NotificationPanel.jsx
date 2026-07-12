@@ -1,3 +1,4 @@
+import { Bell } from "lucide-react";
 import StatusBadge from "../dashboard/StatusBadge";
 import SectionCard from "../dashboard/SectionCard";
 
@@ -8,14 +9,14 @@ export default function NotificationPanel({ notifications }) {
         {notifications.map(({ id, title, message, time, status, icon: Icon }) => (
           <article
             key={id}
-            className="flex gap-3 rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] p-4"
+            className="flex gap-3 rounded-[1.25rem] border border-[#E2E8F0] bg-gradient-to-br from-white to-slate-50 p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
           >
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-white text-[#2563EB]">
-              <Icon size={18} />
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-[#2563EB] ring-1 ring-blue-100">
+              {Icon ? <Icon size={18} /> : <Bell size={18} />}
             </span>
             <div className="min-w-0 flex-1">
               <div className="flex flex-wrap items-center justify-between gap-2">
-                <h3 className="text-sm font-semibold text-[#1E293B]">{title}</h3>
+                <h3 className="text-sm font-semibold text-[#0F172A]">{title}</h3>
                 <StatusBadge tone={status === "Unread" ? "info" : "neutral"}>
                   {status}
                 </StatusBadge>

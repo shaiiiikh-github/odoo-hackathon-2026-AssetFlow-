@@ -1,4 +1,5 @@
 import { USER_ROLES } from "../constants/roles";
+import { readAuthSession } from "./authSession";
 
 export const roleLabels = {
   [USER_ROLES.admin]: "Admin",
@@ -19,11 +20,21 @@ export function getRoleFromPath(pathname) {
 }
 
 export function getCurrentRole(pathname = window.location.pathname) {
-  return localStorage.getItem("assetflow:user-role") || getRoleFromPath(pathname);
+  const sessionRole = readAuthSession().role;
+
+  return sessionRole || getRoleFromPath(pathname);
 }
 
 export function getCurrentUser(pathname) {
-  const role = getCurrentRole(pathname);
+  const session = readAuthSession();
+  const role = session.role || getCurrentRole(pathname);
+
+  if (session.user) {
+    return {
+      ...session.user,
+      role: roleLabels[role] || session.user.role,
+    };
+  }
 
   return {
     name: role === USER_ROLES.admin ? "Shabbir Ahmed" : "Shabbir Ahmed",
